@@ -1,0 +1,8 @@
+publisher.local.json
+.publish-state/
+work/
+.planning/
+*.tmp
+*.bak
+*.original-*
+__pycache__/

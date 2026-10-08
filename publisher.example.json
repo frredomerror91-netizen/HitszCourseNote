@@ -1,0 +1,9 @@
+{
+  "SchemaVersion": 1,
+  "RepositoryRoot": "S:\\GitHub\\HitszCourseNote",
+  "ExpectedRemote": "https://github.com/frredomerror91-netizen/HitszCourseNote.git",
+  "SourceRoots": ["S:\\agent\\数逻", "S:\\agent\\概率论", "S:\\agent\\大物学习", "S:\\agent\\高电学习", "S:\\agent\\复变学习", "S:\\agent\\离散学习", "S:\\agent\\信息安全竞赛", "S:\\agent\\文理通识"],
+  "AllowedSubjects": ["数逻", "概率论", "大物学习", "高电学习", "复变学习", "离散学习", "信息安全竞赛", "文理通识"],
+  "LogRoot": "S:\\agent\\Github更新日志",
+  "NetworkTimeoutSeconds": 30
+}
