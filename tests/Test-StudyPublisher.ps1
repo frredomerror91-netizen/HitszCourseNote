@@ -36,6 +36,8 @@ if($Suite -in @('All','Validation')){
  Check 'ImageOutsideSourceRoot' {$f=Fixture;$outside=Join-Path $f.Base 'outside.png';[IO.File]::WriteAllBytes($outside,[byte[]]@(1,2));Add-Content $f.File '![图](../outside.png)';$f.Request.Entries[0].ReviewedSha256=Hash $f.File;Reject {Get-PublishSnapshot $f.Config $f.Request} '越界'}
  Check 'RejectActiveSvg' {$f=Fixture;$svg=Join-Path $f.Source '图.svg';WriteText $svg '<svg><script>alert(1)</script></svg>';$f.Request.Entries+= [pscustomobject]@{SourcePath=$svg;DestinationPath='数学/图.svg';ReviewedSha256=(Hash $svg);Kind='image'};Reject {Get-PublishSnapshot $f.Config $f.Request}}
  Check 'NewRequestCliCollectsImages' {$f=Fixture;$f.Config.ExpectedRemote='https://github.com/frredomerror91-netizen/HitszCourseNote.git';$cfg=Join-Path $f.Base 'cfg.json';$f.Config|ConvertTo-Json -Depth 5|Set-Content $cfg;[IO.File]::WriteAllBytes((Join-Path $f.Source '图.png'),[byte[]]@(137,80,78,71));Add-Content $f.File '![图](图.png)';$req=Join-Path $f.Repo '.publish-state/request.json';$out=& pwsh -NoProfile -File (Join-Path $package 'scripts/New-PublishRequest.ps1') -ConfigPath $cfg -Notes $f.File -Subject 数学 -Kind general-note -ReviewCompleted -RequestPath $req;Assert ($LASTEXITCODE -eq 0) ($out -join ';');$q=Get-Content $req -Raw|ConvertFrom-Json;Assert ($q.Entries.Count -eq 2)}
+ Check 'NewRequestCliRejectsPdfInput' {$f=Fixture;$f.Config.ExpectedRemote='https://github.com/frredomerror91-netizen/HitszCourseNote.git';$pdf=Join-Path $f.Source '教材.pdf';[IO.File]::WriteAllBytes($pdf,[byte[]]@(37,80,68,70));$cfg=Join-Path $f.Base 'cfg.json';$f.Config|ConvertTo-Json -Depth 5|Set-Content $cfg;$req=Join-Path $f.Repo '.publish-state/pdf-request.json';$out=& pwsh -NoProfile -File (Join-Path $package 'scripts/New-PublishRequest.ps1') -ConfigPath $cfg -Notes $pdf -Subject 数学 -Kind general-note -ReviewCompleted -RequestPath $req 2>&1;Assert ($LASTEXITCODE -ne 0) 'PDF must fail';Assert (-not(Test-Path $req)) 'PDF request must not be created'}
+ Check 'NewRequestCliExcludesUnreferencedMaterials' {$f=Fixture;$f.Config.ExpectedRemote='https://github.com/frredomerror91-netizen/HitszCourseNote.git';foreach($name in @('教材.pdf','课件.pptx','数据.xlsx','附件.zip','其他资料.md','草稿.md','未引用.png')){WriteText (Join-Path $f.Source $name) '不得发布'};$cfg=Join-Path $f.Base 'cfg.json';$f.Config|ConvertTo-Json -Depth 5|Set-Content $cfg;$req=Join-Path $f.Repo '.publish-state/filtered-request.json';$out=& pwsh -NoProfile -File (Join-Path $package 'scripts/New-PublishRequest.ps1') -ConfigPath $cfg -Notes $f.File -Subject 数学 -Kind general-note -ReviewCompleted -RequestPath $req;Assert ($LASTEXITCODE -eq 0) ($out -join ';');$q=Get-Content $req -Raw|ConvertFrom-Json;Assert ($q.Entries.Count -eq 1);Assert ($q.Entries[0].SourcePath -eq $f.File)}
  Check 'RejectReparseAncestor' {$f=Fixture;$outside=Join-Path $f.Base 'outside';[IO.Directory]::CreateDirectory($outside)|Out-Null;WriteText (Join-Path $outside 'note.md') '# outside';$link=Join-Path $f.Source 'junction';New-Item -ItemType Junction -Path $link -Target $outside|Out-Null;$f.Request.Entries[0].SourcePath=Join-Path $link 'note.md';$f.Request.Entries[0].ReviewedSha256=Hash $f.Request.Entries[0].SourcePath;Reject {Get-PublishSnapshot $f.Config $f.Request} '链接|reparse'}
 }
 if($Suite -in @('All','Logs')){
@@ -88,11 +90,3 @@ if($Suite -in @('All','Bootstrap')){
 }
 Write-Host "RESULT passed=$script:passed failed=$script:failed fixture=$runRoot"
 if($script:failed){exit 1}
-
-
-
-
-
-
-
-
