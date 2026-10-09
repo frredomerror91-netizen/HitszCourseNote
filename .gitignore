@@ -1,8 +1,9 @@
+# 不把本机配置、状态、工具测试和临时文件放入学习笔记仓库
 publisher.local.json
 .publish-state/
 work/
-.planning/
+scripts/
+tests/
 *.tmp
 *.bak
 *.original-*
-__pycache__/
