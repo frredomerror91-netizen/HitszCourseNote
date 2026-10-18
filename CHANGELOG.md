@@ -7,6 +7,13 @@
 ### 修改
 
 
+
+- 修改 学习资料：大物实验/半导体禁带宽度和载流子迁移率测量实验学习笔记.md（内容摘要 1C7FC3952911）。
+- 修改 学习资料：大物实验/光强调制法测光速实验总结.md（内容摘要 B3A9CAE183E3）。
+- 修改 学习资料：大物实验/自组光栅光谱仪实验学习笔记.md（内容摘要 7CD749650B43）。
+- 修改 学习资料：电路实验/实验六_集成运放应用实验报告.md（内容摘要 4A8A1C4A2311）。
+- 修改 学习资料：电路实验/实验五_单管交流放大电路_从零操作指南.md（内容摘要 DA95D8BC867D）。
+
 - 修改 学习资料：数逻/第10章VHDL 的介绍学习笔记.md（内容摘要 6523B6814718）。
 - 修改 学习资料：数逻/第11章锁存器与触发器学习笔记.md（内容摘要 3F857AC48DAF）。
 - 修改 学习资料：数逻/第12章寄存器与计数器学习笔记.md（内容摘要 1E95E71E02FD）。
@@ -48,6 +55,20 @@
 - 修改 学习资料：数逻/第7章多级门电路与非门和或非门学习笔记.md（内容摘要 0BA4C10A049F）。
 - 修改 学习资料：数逻/第8章用门电路设计和模拟组合电路学习笔记.md（内容摘要 8D10E32F5FEF）。
 - 修改 学习资料：数逻/第9章多路选择器、译码器和可编程逻辑器件学习笔记.md（内容摘要 53F5CBE39460）。
+
+
+### 新增
+
+- 新增 学习资料：数逻/实验一Vivado使用与组合电路学习与操作指南.md（内容摘要 13A943DCEA4E）。
+- 新增 学习资料：数逻/images/lab1-tutorial/add-design-source.png（内容摘要 FA69F2635A86）。
+- 新增 学习资料：数逻/images/lab1-tutorial/add-simulation-source.png（内容摘要 A3BAFE2705BD）。
+- 新增 学习资料：数逻/images/lab1-tutorial/build-bitstream.png（内容摘要 61B67A5D86BC）。
+- 新增 学习资料：数逻/images/lab1-tutorial/connect-hardware.png（内容摘要 A8A856FEE896）。
+- 新增 学习资料：数逻/images/lab1-tutorial/device-selection.png（内容摘要 D31ABC2E5B31）。
+- 新增 学习资料：数逻/images/lab1-tutorial/ego1-io.png（内容摘要 FA852BB29D3A）。
+- 新增 学习资料：数逻/images/lab1-tutorial/minisys-io.png（内容摘要 631E849A6740）。
+- 新增 学习资料：数逻/images/lab1-tutorial/program-device.png（内容摘要 938E8EED9ABB）。
+- 新增 学习资料：数逻/images/lab1-tutorial/run-behavioral-simulation.png（内容摘要 1D4861A1195D）。
 
 ## 2026-10-15
 
