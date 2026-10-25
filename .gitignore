@@ -7,3 +7,6 @@ tests/
 *.tmp
 *.bak
 *.original-*
+
+# Python 实验成果仅保留在本地
+/文理通识/Python数据可视化/实验*/
